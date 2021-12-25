@@ -1,0 +1,33 @@
+@import './_color';
+
+h1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: $darkShade;
+}
+
+h2 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 15px;
+    color: $darkShade;
+}
+
+h3 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    color: $darkShade;
+}
+
+p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    color: $darkShade75;
+}

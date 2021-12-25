@@ -1,0 +1,81 @@
+@use './../../../styles/_main/color' as *;
+
+$borderSetting: 1px solid $darkShade25;
+$borderHoverSetting: 1px solid $darkShade75;
+
+.active {
+    position: relative;
+}
+
+.select {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px 36px 5px 15px;
+    box-sizing: border-box;
+    border: 1px solid $darkShade25;
+    border-radius: 6px;
+    position: relative;
+    font-size: 14px;
+    line-height: 24px;
+    color: $darkShade75;
+    cursor: pointer;
+
+    &:hover {
+        border-top: $borderHoverSetting;
+        border-color: $darkShade75;
+    }
+
+    &::before {
+        content: '';
+        width: 36px;
+        height: 36px;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(0, -50%);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url('./../../../images/icons/arrowDown.svg');
+    }
+
+    .active &::before {
+        transform: rotate(180deg) translate(0, 50%);
+    }
+
+    .active & {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+.options {
+    position: absolute;
+    top: 36px;
+    right: 0;
+    left: 0;
+    background-color: $white;
+    cursor: pointer;
+}
+
+.option {
+    width: 100%;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 24px;
+    color: $darkShade75;
+    border-right: $borderSetting;
+    border-bottom: $borderSetting;
+    border-left: $borderSetting;
+
+    &:hover {
+        margin-top: -1px;
+        border-top: $borderHoverSetting;
+        border-color: $darkShade75;
+    }
+
+    &:last-child {
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+}
