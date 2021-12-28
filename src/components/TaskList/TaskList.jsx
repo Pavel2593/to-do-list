@@ -1,16 +1,15 @@
 import React from 'react'
-import TaskItem from '../TaskItem'
-import classes from './TaskList.module.scss'
+import TaskItem from './../TaskItem/TaskItem'
+import cl from './TaskList.module.scss'
 
-const TaskList = ({removeTask, tasks, title }) => {
+const TaskList = ({ removeTask, tasks}) => {
     const isListEmpty = tasks.length === 0
     return (
-        <div>
-            <h1 className={classes.TaskList__title}>{title}</h1>
+        <div className={cl.TaskList}>
             {
                 isListEmpty
                     ?
-                        <h2 className={classes.TaskList__subtitle}>Пополните список дел.</h2>
+                        <h1 className={cl.TaskList__subtitle}>Пополните список дел.</h1>
                     :
                         tasks.map((task, index) => (
                             <TaskItem

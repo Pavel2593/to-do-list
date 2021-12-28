@@ -1,0 +1,9 @@
+@use './../../../styles/_main/color' as *;
+
+.headerList {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: $darkShade5;
+    box-shadow: $boxShadow;
+}

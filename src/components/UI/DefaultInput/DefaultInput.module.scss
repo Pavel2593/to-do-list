@@ -2,13 +2,13 @@
 
 .input {
     width: 100%;
-    margin-bottom: 10px;
+    height: 36px;
     padding: 5px 15px;
     box-sizing: border-box;
     border: 1px solid $darkShade25;
     border-radius: 6px;
+    font-family: 'Montserrat';
     font-size: 14px;
-    line-height: 24px;
     color: $darkShade75;
 
     &:hover,

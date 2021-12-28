@@ -2,6 +2,7 @@
 
 $borderSetting: 1px solid $darkShade25;
 $borderHoverSetting: 1px solid $darkShade75;
+$paddingItem: 10px 36px 10px 15px;
 
 .active {
     position: relative;
@@ -9,15 +10,16 @@ $borderHoverSetting: 1px solid $darkShade75;
 
 .select {
     width: 100%;
-    margin-bottom: 10px;
-    padding: 5px 36px 5px 15px;
+    padding: $paddingItem;
     box-sizing: border-box;
     border: 1px solid $darkShade25;
     border-radius: 6px;
     position: relative;
+    font-family: 'Montserrat';
     font-size: 14px;
-    line-height: 24px;
+    white-space: nowrap;
     color: $darkShade75;
+    background-color: $white;
     cursor: pointer;
 
     &:hover {
@@ -53,16 +55,18 @@ $borderHoverSetting: 1px solid $darkShade75;
     top: 36px;
     right: 0;
     left: 0;
+    z-index: 1;
     background-color: $white;
     cursor: pointer;
 }
 
 .option {
     width: 100%;
-    padding: 5px 15px;
+    padding: $paddingItem;
     box-sizing: border-box;
+    font-family: 'Montserrat';
     font-size: 14px;
-    line-height: 24px;
+    white-space: nowrap;
     color: $darkShade75;
     border-right: $borderSetting;
     border-bottom: $borderSetting;

@@ -1,12 +1,12 @@
 import React from 'react'
-import classes from './DefaultInput.module.scss'
+import cl from './DefaultInput.module.scss'
 
-const DefaultInput = (props) => {
+const DefaultInput = ({ className, ...props}) => {
     return (
         <input
             type="text"
             {...props}
-            className={classes.input}
+            className={[cl.input, className].join(' ')}
         />
     )
 }

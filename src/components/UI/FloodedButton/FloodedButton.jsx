@@ -1,10 +1,10 @@
 import React from 'react'
-import classes from './FloodedButton.module.scss'
+import cl from './FloodedButton.module.scss'
 
 
-const FloodedButton = ({ children, ...props}) => {
+const FloodedButton = ({ children, className, ...props}) => {
     return (
-        <button className={classes.button} {...props}>
+        <button className={[cl.button, className].join(' ')} {...props}>
             {children}
         </button>
     )

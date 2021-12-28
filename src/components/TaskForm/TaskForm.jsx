@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
-import FloodedButton from './UI/FloodedButton/FloodedButton'
-import DefaultInput from './UI/DefaultInput/DefaultInput'
+import FloodedButton from './../UI/FloodedButton/FloodedButton'
+import DefaultInput from './../UI/DefaultInput/DefaultInput'
+import cl from './TaskForm.module.scss'
 
 const TaskForm = ({addTask, ...props}) => {
     const [task, setTask] = useState({
@@ -19,19 +20,21 @@ const TaskForm = ({addTask, ...props}) => {
     }
 
     return (
-        <form style={{ marginBottom: '10px' }}>
+        <form className={cl.taskForm}>
             <DefaultInput
+                className={cl.taskFormItem}
                 value={task.title}
                 onChange={e => setTask({ ...task, title: e.target.value })}
                 placeholder="Заголовок задачи"
             />
             <DefaultInput
+                className={cl.taskFormItem}
                 value={task.description}
                 onChange={e => setTask({ ...task, description: e.target.value })}
                 placeholder="Описание задачи"
             />
             <FloodedButton onClick={createPost}>
-                Создать задачу
+                Добавить
             </FloodedButton>
         </form>
     )

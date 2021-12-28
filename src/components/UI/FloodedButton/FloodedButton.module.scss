@@ -1,12 +1,14 @@
 @use './../../../styles/_main/color' as *;
 
 .button {
+    height: 36px;
     padding: 10px 20px;
     border: none;
     border-radius: 22px;
+    font-family: 'Montserrat';
     font-weight: bold;
     font-size: 12px;
-    line-height: 16px;
+    white-space: nowrap;
     color: $white;
     background: linear-gradient(180deg, $purple 0%, $purpleGradient 100%);
     cursor: pointer;
