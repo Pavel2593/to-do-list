@@ -83,3 +83,21 @@ $paddingItem: 10px 36px 10px 15px;
         border-bottom-left-radius: 6px;
     }
 }
+
+.animation {
+    &Enter {
+        opacity: 0;
+
+        &Active {
+            opacity: 1;
+            transition: all 500ms ease-in;
+        }
+    }
+
+    &Exit {
+        &Active {
+            display: none;
+            transition: all 500ms ease-in;
+        }
+    }
+}

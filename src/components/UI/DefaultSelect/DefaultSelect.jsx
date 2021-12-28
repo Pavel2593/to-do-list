@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { CSSTransition } from 'react-transition-group'
 import cl from './DefaultSelect.module.scss'
 
 const DefaultSelect = ({ returnValueFunction, defaultValue, options, className }) => {
@@ -24,20 +25,31 @@ const DefaultSelect = ({ returnValueFunction, defaultValue, options, className }
             >
                 {selectedName}
             </div>
-            <div className={cl.options}>
-                {
-                    (showOptions) &&
-                    options.map((option) => (
-                        <div 
-                        key={option.value} 
-                        className={cl.option}
-                        onClick={() => selectOption(option.value, option.name)}
-                        >
-                            {option.name}
-                        </div>
-                    ))
-                }
-            </div>
+            <CSSTransition
+                in={showOptions}
+                timeout={300}
+                classNames={{
+                    enter: cl.animationEnter,
+                    enterActive: cl.animationEnterActive,
+                    exit: cl.animationExit,
+                    exitActive: cl.animationExitActive,
+                }}
+                unmountOnExit
+            >
+                <div className={cl.options}>
+                    {
+                        options.map((option) => (
+                            <div 
+                            key={option.value} 
+                            className={cl.option}
+                            onClick={() => selectOption(option.value, option.name)}
+                            >
+                                {option.name}
+                            </div>
+                        ))
+                    }
+                </div>
+            </CSSTransition>
         </div>
     )
 }

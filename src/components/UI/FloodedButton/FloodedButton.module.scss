@@ -13,6 +13,10 @@
     background: linear-gradient(180deg, $purple 0%, $purpleGradient 100%);
     cursor: pointer;
 
+    &:focus-visible {
+        outline: none;
+    }
+
     &:disabled {
         opacity: 0.5;
         cursor: initial;
