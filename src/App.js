@@ -1,23 +1,31 @@
-import React, { useState } from 'react'
-import { useSearchAndSortTasks } from './components/hooks/useSearchAndSortTasks';
-import TaskFilter from './components/TaskFilter/TaskFilter';
+import React, { useState, useEffect } from 'react'
+import { useSearchAndSortTasks } from './hooks/useSearchAndSortTasks'
+import TaskFilter from './components/TaskFilter/TaskFilter'
 import TaskForm from './components/TaskForm/TaskForm'
 import TaskList from './components/TaskList/TaskList'
-import DefaultPopup from './components/UI/DefaultPopup/DefaultPopup';
-import FloodedButton from './components/UI/FloodedButton/FloodedButton';
-import HeaderList from './components/UI/HeaderList/HeaderList';
+import DefaultPopup from './components/UI/DefaultPopup/DefaultPopup'
+import FloodedButton from './components/UI/FloodedButton/FloodedButton'
+import HeaderList from './components/UI/HeaderList/HeaderList'
+import TaskServic from './API/TaskServis'
+import DefaultLoader from './components/UI/DefaultLoader/DefaultLoader'
 
 function App() {
-	const [tasks, setTasks] = useState([
-		{ id: 7, title: 'to-do-list', description: 'разобраться с axios' },
-		{ id: 0, title: 'Уборка перед НГ', description: 'Помыть полы' },
-		{ id: 1, title: 'досуг', description: 'сходить попить кофе' },
-		{ id: 2, title: 'Подарки НГ', description: 'тайный санты бюджет 1000' },
-		{ id: 3, title: 'JavaScript', description: 'test test test test' },
-	]);
-
+	const [tasks, setTasks] = useState([]);
 	const [filterObject, setFilterObject] = useState({ sort: '', search: '' })
 	const [showTaskFormPopup, setShowTaskFormPopup] = useState(false)
+	const [isTasksLoading, setIsTasksLoading] = useState(false)
+
+	useEffect(() => {
+		fetchTasks()
+	}, [])
+
+	async function fetchTasks() {
+		setIsTasksLoading(true)
+		const response = await TaskServic.getAll()
+		setTasks(response)
+		setIsTasksLoading(false)
+	}
+
 	const searchedAndSortPosts = useSearchAndSortTasks(tasks, filterObject.sort, filterObject.search);
 
 	const addTask = (newTask) => {
@@ -44,10 +52,16 @@ function App() {
 						<TaskForm addTask={addTask} />
 					</DefaultPopup>
 				</HeaderList>
-				<TaskList
-					removeTask={removeTask}
-					tasks={searchedAndSortPosts}
-				/>
+				{
+				isTasksLoading
+					?
+						<DefaultLoader />
+					: 
+						<TaskList
+							removeTask={removeTask}
+							tasks={searchedAndSortPosts}
+						/>
+				}
 			</div>
 		</div>
 	);

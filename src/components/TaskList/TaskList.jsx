@@ -9,31 +9,31 @@ const TaskList = ({ removeTask, tasks}) => {
         <div className={cl.TaskList}>
                 {
                     isListEmpty
-                        ?
-                            <h1 className={cl.TaskList__subtitle}>Пополните список дел.</h1>
-                        :
-                        <TransitionGroup>
-                            {
-                                tasks.map((task, index) => (
-                                    <CSSTransition
-                                    key={task.id}
-                                    timeout={500}
-                                    classNames={{
-                                        enter: cl.animationEnter,
-                                        enterActive: cl.animationEnterActive,
-                                        exit: cl.animationExit,
-                                        exitActive: cl.animationExitActive,
-                                    }}
-                                    >
-                                        <TaskItem
-                                        removeTask={removeTask}
-                                        number={index + 1}
-                                        task={task}
-                                        />
-                                    </CSSTransition>
-                                ))
-                            }
-                        </TransitionGroup>
+                    ?
+                        <h1 className={cl.TaskList__subtitle}>Пополните список дел.</h1>
+                    :
+                    <TransitionGroup>
+                        {
+                            tasks.map((task, index) => (
+                                <CSSTransition
+                                key={task.id}
+                                timeout={300}
+                                classNames={{
+                                    enter: cl.animationEnter,
+                                    enterActive: cl.animationEnterActive,
+                                    exit: cl.animationExit,
+                                    exitActive: cl.animationExitActive,
+                                }}
+                                >
+                                    <TaskItem
+                                    removeTask={removeTask}
+                                    number={index + 1}
+                                    task={task}
+                                    />
+                                </CSSTransition>
+                            ))
+                        }
+                    </TransitionGroup>
                 }
         </div>
     )

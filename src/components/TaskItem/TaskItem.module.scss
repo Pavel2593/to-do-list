@@ -2,16 +2,28 @@
 
 .taskItem {
     margin-bottom: 20px;
-    padding: 20px 20px 40px;
+    padding: 20px 20px 30px;
     box-sizing: border-box;
     border-radius: 6px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     box-shadow: $boxShadow;
     background-color: $white;
 
-    &MB {
+    &MR40 {
+        margin-right: 40px;
+    }
+
+    &MB40 {
+        margin-bottom: 40px;
+    }
+
+    &MB20 {
         margin-bottom: 20px;
+    }
+
+    &Right {
+        display: flex;
+        justify-content: flex-end;
     }
 }

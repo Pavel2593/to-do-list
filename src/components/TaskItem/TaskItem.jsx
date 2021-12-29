@@ -5,13 +5,11 @@ import cl from './TaskItem.module.scss'
 const TaskItem = ({removeTask, number, task}) => {
     return (
         <div className={cl.taskItem}>
-            <div>
-                <h2 className={cl.taskItemMB}>{number}) {task.title}</h2>
-                <div>
-                    {task.description}
-                </div>
+            <h2 className={cl.taskItemMB20}>{number}) {task.title}</h2>
+            <div className={cl.taskItemMB40}>
+                {task.body}
             </div>
-            <div>
+            <div className={cl.taskItemRight}>
                 <BorderButton onClick={() => removeTask(task.id)}>Удалить</BorderButton>
             </div>
         </div>
