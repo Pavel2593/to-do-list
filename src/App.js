@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSearchAndSortTasks } from './hooks/useSearchAndSortTasks'
+import { useFetching } from './hooks/useFetching'
 import TaskFilter from './components/TaskFilter/TaskFilter'
 import TaskForm from './components/TaskForm/TaskForm'
 import TaskList from './components/TaskList/TaskList'
@@ -13,18 +14,14 @@ function App() {
 	const [tasks, setTasks] = useState([]);
 	const [filterObject, setFilterObject] = useState({ sort: '', search: '' })
 	const [showTaskFormPopup, setShowTaskFormPopup] = useState(false)
-	const [isTasksLoading, setIsTasksLoading] = useState(false)
-
+	const [fetchTasks, isTasksLoading, tasksError] = useFetching(async () => {
+		const response = await TaskServic.getAll()
+		setTasks(response)
+	})
+	
 	useEffect(() => {
 		fetchTasks()
 	}, [])
-
-	async function fetchTasks() {
-		setIsTasksLoading(true)
-		const response = await TaskServic.getAll()
-		setTasks(response)
-		setIsTasksLoading(false)
-	}
 
 	const searchedAndSortPosts = useSearchAndSortTasks(tasks, filterObject.sort, filterObject.search);
 
@@ -52,6 +49,9 @@ function App() {
 						<TaskForm addTask={addTask} />
 					</DefaultPopup>
 				</HeaderList>
+				{tasksError &&
+					<p>{tasksError}</p>
+				}
 				{
 				isTasksLoading
 					?
