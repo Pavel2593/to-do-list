@@ -5,7 +5,7 @@ import cl from './TaskItem.module.scss'
 const TaskItem = ({removeTask, number, task}) => {
     return (
         <div className={cl.taskItem}>
-            <h2 className={cl.taskItemMB20}>{number}) {task.title}</h2>
+            <h2 className={cl.taskItemMB20}>{task.id}) {task.title}</h2>
             <div className={cl.taskItemMB40}>
                 {task.body}
             </div>

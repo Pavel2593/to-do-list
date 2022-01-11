@@ -7,23 +7,31 @@ import TaskList from './components/TaskList/TaskList'
 import DefaultPopup from './components/UI/DefaultPopup/DefaultPopup'
 import FloodedButton from './components/UI/FloodedButton/FloodedButton'
 import HeaderList from './components/UI/HeaderList/HeaderList'
+import Pagination from './components/UI/Pagination/Pagination'
 import TaskServic from './API/TaskServis'
 import DefaultLoader from './components/UI/DefaultLoader/DefaultLoader'
+import { getPageCount } from './utils/pages'
 
 function App() {
 	const [tasks, setTasks] = useState([]);
-	const [filterObject, setFilterObject] = useState({ sort: '', search: '' })
 	const [showTaskFormPopup, setShowTaskFormPopup] = useState(false)
-	const [fetchTasks, isTasksLoading, tasksError] = useFetching(async () => {
-		const response = await TaskServic.getAll()
-		setTasks(response)
-	})
-	
-	useEffect(() => {
-		fetchTasks()
-	}, [])
-
+	const [totalPages, setTotalPages] = useState(0)
+	const [limit, setLimit] = useState(10)
+	const [page, setPage] = useState(1)
+	const [filterObject, setFilterObject] = useState({ sort: '', search: '' })
 	const searchedAndSortPosts = useSearchAndSortTasks(tasks, filterObject.sort, filterObject.search);
+	const [fetchTasks, isTasksLoading, tasksError] = useFetching(async (limit, page) => {
+		const response = await TaskServic.getAll(limit, page)
+		setTasks(response.data)
+		const totalCount = response.headers['x-total-count']
+		const pageCount = getPageCount(totalCount, limit)
+		setTotalPages(pageCount)
+
+	})
+
+	useEffect(() => {
+		fetchTasks(limit, page)
+	}, [])
 
 	const addTask = (newTask) => {
 		setTasks([...tasks, newTask])
@@ -34,6 +42,11 @@ function App() {
 		setTasks(tasks.filter(
 			task => task.id !== deletedTaskId
 		))
+	}
+
+	const changePage = (page) => {
+		setPage(page)
+		fetchTasks(limit, page)
 	}
 
 	return (
@@ -62,6 +75,7 @@ function App() {
 							tasks={searchedAndSortPosts}
 						/>
 				}
+				<Pagination totalPages={totalPages} page={page} changePage={changePage} />
 			</div>
 		</div>
 	);

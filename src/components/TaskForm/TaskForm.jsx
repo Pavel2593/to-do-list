@@ -6,7 +6,7 @@ import cl from './TaskForm.module.scss'
 const TaskForm = ({addTask, ...props}) => {
     const [task, setTask] = useState({
         title: '',
-        description: ''
+        body: ''
     })
 
     const createPost = (e) => {
@@ -15,7 +15,7 @@ const TaskForm = ({addTask, ...props}) => {
         addTask(newTask)
         setTask({
             title: '',
-            description: ''
+            body: ''
         })
     }
 
@@ -29,8 +29,8 @@ const TaskForm = ({addTask, ...props}) => {
             />
             <DefaultInput
                 className={cl.taskFormItem}
-                value={task.description}
-                onChange={e => setTask({ ...task, description: e.target.value })}
+                value={task.body}
+                onChange={e => setTask({ ...task, body: e.target.value })}
                 placeholder="Описание задачи"
             />
             <FloodedButton onClick={createPost}>
