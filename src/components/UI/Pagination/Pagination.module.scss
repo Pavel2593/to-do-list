@@ -21,6 +21,10 @@
     cursor: pointer;
 }
 
+.item:not(:last-child) {
+    margin-right: 10px;
+}
+
 .itemCurrent {
     color: $white;
     background-color: $purple;
